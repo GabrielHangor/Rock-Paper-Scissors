@@ -1,15 +1,17 @@
-const playerSelection = prompt('Enter your choice: "Rock", "Paper" or "Scissors"').toLowerCase();
+const playerInput = prompt('Enter your choice: "Rock", "Paper" or "Scissors"');
+const playerSelection = playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLocaleLowerCase(); // player input case insensitive now
 const computerSelection = computerPlay();
 
+
 const rules = {
-  rock: { name: "rock", defeats: ["scissors"] },
-  paper: { name: "paper", defeats: ["rock"] },
-  scissors: { name: "scissors", defeats: ["paper"] },
+  Rock: { name: "Rock", defeats: ["Scissors"] },
+  Paper: { name: "Paper", defeats: ["Rock"] },
+  Scissors: { name: "Scissors", defeats: ["Paper"] },
 };
 
 // Returns Rock, Paper or Scissors value randomly
 function computerPlay() {
-  const computerChoices = ["rock", "paper", "scissors"];
+  const computerChoices = ["Rock", "Paper", "Scissors"];
   const randomChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
   return randomChoice;
@@ -23,11 +25,13 @@ function playRound(playerSelection, computerSelection) {
   } else {
     const choice = rules[playerSelection];
     if (choice.defeats.includes(computerSelection)) {
-      return `${playerSelection} beats ${computerSelection}. You won!`;
+      return `${playerSelection} beats ${computerSelection}. Player won!`;
     } else {
-      return `You lost! ${computerSelection} beats ${playerSelection}`;
+      return `Player lost! ${computerSelection} beats ${playerSelection}`;
     }
   }
 }
 
-playRound(playerSelection, computerSelection);
+
+// On load
+console.log(playRound(playerSelection, computerSelection));
