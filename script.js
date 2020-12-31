@@ -1,6 +1,13 @@
-
 let playerScore = 0;
 let computerScore = 0;
+
+const playerScoreDisplay = document.querySelector(".player-score");
+const computerScoreDisplay = document.querySelector(".computer-score");
+const playerChoice = document.querySelector("#player-icon");
+const computerChoice = document.querySelector("#computer-icon");
+const rockEl = document.querySelector("#rock");
+const paperEl = document.querySelector("#paper");
+const scissorsEl = document.querySelector("#scissors");
 
 // check if the user's choice beats computer's via accessing this object
 const rules = {
@@ -18,24 +25,32 @@ function computerPlay() {
   return randomChoice;
 }
 
-// Compare user's input with a computer's random choice and return some text
+// Update the score and the icons
+function updateDom(playerSelection, computerSelection) {
+  playerScoreDisplay.textContent = `Player: ${playerScore}`;
+  computerScoreDisplay.textContent = `Computer: ${computerScore}`;
+}
+
+// Compare user's input with a computer's random choice and update the DOM accordingly
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return `It is a tie! Player score: ${playerScore}, Computer score: ${computerScore}`;
+    return;
   } else {
     const choice = rules[playerSelection];
     if (choice.defeats.includes(computerSelection)) {
       playerScore++;
-      return `Player won! ${playerSelection}(player) beats ${computerSelection}(computer). Player score: ${playerScore}, Computer score: ${computerScore}.`;
     } else {
       computerScore++;
-      return `Player lost! ${playerSelection}(player) loses to ${computerSelection}(computer). Player score: ${playerScore}, Computer score: ${computerScore}.`;
     }
   }
+  updateDom(playerSelection, computerSelection);
 }
 
-
-
+rockEl.addEventListener("click", () => playRound("Rock", computerPlay()));
+paperEl.addEventListener("click", () => playRound("Paper", computerPlay()));
+scissorsEl.addEventListener("click", () =>
+  playRound("Scissors", computerPlay())
+);
 
 // // play the game 5 times and determine a winner
 // function game() {
@@ -55,6 +70,3 @@ function playRound(playerSelection, computerSelection) {
 //     console.log(`End of the game. Computer won with the score of ${computerScore}!`);
 //   }
 // }
-
-
-

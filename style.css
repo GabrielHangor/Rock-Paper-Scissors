@@ -63,7 +63,6 @@ header {
   color: rgb(255, 191, 191);
 }
 
-
 .players-choice {
   display: flex;
   justify-content: space-evenly;
@@ -75,7 +74,11 @@ header {
 .players-choice > i {
   font-size: 4rem;
   cursor: pointer;
-  color: rgb(70, 70, 70)
+  color: rgb(70, 70, 70);
+}
+
+.selected {
+  color: rgb(255, 116, 116);
 }
 
 @media screen and (max-width: 650px) {
