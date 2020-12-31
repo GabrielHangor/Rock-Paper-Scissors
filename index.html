@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
   <title>Rock Paper Scissors</title>
 </head>
+
 <body>
-  
+  <!-- Main container -->
+  <div class="container">
+    <!-- Game container -->
+    <div class="game-container">
+      <header>
+        <h2>Rock Paper Scissors</h3>
+      </header>
+      <!-- Choices and scores -->
+      <div class="score-choice">
+        <!-- Player -->
+        <div class="player">
+          <p>Player: 1</p>
+          <i class="far fa-hand-rock"></i>
+        </div>
+        <!-- Computer -->
+        <div class="computer">
+          <p>Computer: 1</p>
+          <i class="far fa-hand-paper"></i>
+        </div>
+      </div>
+      <!-- Player's choice -->
+      <div class="players-choice">
+        <i title="Rock" class="far fa-hand-rock"></i>
+        <i title="Paper" class="far fa-hand-paper"></i>
+        <i title="Scissors" class="far fa-hand-scissors"></i>
+      </div>
+    </div>
+    <div class="results-container">
+
+    </div>
+  </div>
+
+
   <script src="script.js"></script>
 </body>
+
 </html>
