@@ -12,6 +12,7 @@ const computerChoice = document.querySelector("#computer-icon");
 const rockEl = document.querySelector("#rock");
 const paperEl = document.querySelector("#paper");
 const scissorsEl = document.querySelector("#scissors");
+const restartBtn = document.querySelector("button");
 
 // check if the user's choice beats computer's via accessing this object
 const rules = {
@@ -36,7 +37,25 @@ function showResults() {
 
   playerScore > computerScore
     ? (scoreResults.textContent = `Player won with the score of ${playerScore}.`)
-    : (scoreResults.textContent = `Computer won with the score of ${computerScore}`);
+    : (scoreResults.textContent = `Computer won with the score of ${computerScore}.`);
+
+  setTimeout(() => {
+    restartBtn.style.visibility = "visible";
+  }, 700);
+}
+
+// Set everything to default
+function restartGame() {
+  gameContainer.style.display = "flex";
+  resultsContainer.style.display = "none";
+  playerScore = 0;
+  computerScore = 0;
+  scoreResults.textContent = "";
+  playerChoice.className = "";
+  computerChoice.className = "";
+  playerScoreDisplay.textContent = "Player: 0";
+  computerScoreDisplay.textContent = "Computer: 0";
+  restartBtn.style.visibility = "hidden";
 }
 
 // Update the score and the icons
@@ -93,22 +112,4 @@ paperEl.addEventListener("click", () => playRound("Paper", computerPlay()));
 scissorsEl.addEventListener("click", () =>
   playRound("Scissors", computerPlay())
 );
-
-// // play the game 5 times and determine a winner
-// function game() {
-//   for (i = 0; i <= 4; i++) {
-//     const playerInput = prompt('Enter your choice: "Rock", "Paper" or "Scissors"');
-//     const playerSelection = playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase(); // player input case insensitive now
-//     const computerSelection = computerPlay();
-//     console.log(playRound(playerSelection, computerSelection));
-//   }
-
-//   if (playerScore === computerScore) {
-//     console.log(`End of the game. It is a tie. Player score: ${playerScore}, Computer score: ${computerScore}.`
-//     );
-//   } else if (playerScore > computerScore) {
-//     console.log(`End of the game. Player won with the score of ${playerScore}!`);
-//   } else {
-//     console.log(`End of the game. Computer won with the score of ${computerScore}!`);
-//   }
-// }
+restartBtn.addEventListener("click", restartGame);
