@@ -1,6 +1,10 @@
+// Global variables and selectors
 let playerScore = 0;
 let computerScore = 0;
 
+const gameContainer = document.querySelector(".game-container");
+const resultsContainer = document.querySelector(".results-container");
+const scoreResults = document.querySelector(".score-results");
 const playerScoreDisplay = document.querySelector(".player-score");
 const computerScoreDisplay = document.querySelector(".computer-score");
 const playerChoice = document.querySelector("#player-icon");
@@ -23,6 +27,16 @@ function computerPlay() {
     computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
   return randomChoice;
+}
+
+// Show the results when game is over
+function showResults() {
+  gameContainer.style.display = "none";
+  resultsContainer.style.display = "flex";
+
+  playerScore > computerScore
+    ? (scoreResults.textContent = `Player won with the score of ${playerScore}.`)
+    : (scoreResults.textContent = `Computer won with the score of ${computerScore}`);
 }
 
 // Update the score and the icons
@@ -68,6 +82,10 @@ function playRound(playerSelection, computerSelection) {
     }
   }
   updateDom(playerSelection, computerSelection);
+
+  if (playerScore === 5 || computerScore === 5) {
+    showResults();
+  }
 }
 
 rockEl.addEventListener("click", () => playRound("Rock", computerPlay()));
