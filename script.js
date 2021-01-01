@@ -29,12 +29,36 @@ function computerPlay() {
 function updateDom(playerSelection, computerSelection) {
   playerScoreDisplay.textContent = `Player: ${playerScore}`;
   computerScoreDisplay.textContent = `Computer: ${computerScore}`;
+
+  switch (playerSelection) {
+    case "Rock":
+      playerChoice.className = "far fa-hand-rock";
+      break;
+    case "Paper":
+      playerChoice.className = "far fa-hand-paper";
+      break;
+    case "Scissors":
+      playerChoice.className = "far fa-hand-scissors";
+      break;
+  }
+
+  switch (computerSelection) {
+    case "Rock":
+      computerChoice.className = "far fa-hand-rock";
+      break;
+    case "Paper":
+      computerChoice.className = "far fa-hand-paper";
+      break;
+    case "Scissors":
+      computerChoice.className = "far fa-hand-scissors";
+      break;
+  }
 }
 
 // Compare user's input with a computer's random choice and update the DOM accordingly
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return;
+    console.log("It is a tie...");
   } else {
     const choice = rules[playerSelection];
     if (choice.defeats.includes(computerSelection)) {
